@@ -19,13 +19,17 @@ bool IsFirst(const int WorldRank)
 
 SConnectedNodes GetConnectedNodes(const int WorldRank, const int WorldSize)
 {
+	int WorldSizeSqrt = sqrt(WorldSize);
+
+	//std::cout << "WorldRank = " << WorldRank << " " << "WorldRank % WorldSizeSqrt = " << WorldRank % WorldSizeSqrt << std::endl;
+
 	int Left = WorldRank - 1;
 	int Right = WorldRank + 1;
-	int Up = WorldRank - WorldSize / 2;
-	int Down = WorldRank + WorldSize / 2;
+	int Up = WorldRank - WorldSizeSqrt;
+	int Down = WorldRank + WorldSizeSqrt;
 
-	Left = Left >= 0 && Left < WorldSize ? Left : -1;
-	Right = Right >= 0 && Right < WorldSize ? Right : -1;
+	Left = Left >= 0 && Left < WorldSize && WorldRank % WorldSizeSqrt != 0 ? Left : -1;
+	Right = Right >= 0 && Right < WorldSize && WorldRank % WorldSizeSqrt != WorldSizeSqrt - 1 ? Right : -1;
 	Up = Up >= 0 && Up < WorldSize ? Up : -1;
 	Down = Down >= 0 && Down < WorldSize ? Down : -1;
 
@@ -56,14 +60,28 @@ int main(int Argc, char* Argv[])
 	int* ReceivedResults = new int[WorldSize * 2];
 	memset(ReceivedResults, -1, sizeof(int) * WorldSize * 2);
 
+	ConnectedNodes.Print(WorldRank);
+
 	// Receiving Messages
 	if (ConnectedNodes.Right != -1)
 	{
 		MPI_Recv(ReceivedResults, WorldSize, MPI_INT, ConnectedNodes.Right, 1, MPI_COMM_WORLD, Statuses);
+		std::cout << "WorldRank = " << WorldRank << "; ";
+		for (int i = 0; i < WorldSize; i++)
+		{
+			std::cout << ReceivedResults[i] << " ";
+		}
+		std::cout << std::endl;
 	}
 	if (ConnectedNodes.Down != -1)
 	{
 		MPI_Recv(ReceivedResults + WorldSize, WorldSize, MPI_INT, ConnectedNodes.Down, 1, MPI_COMM_WORLD, Statuses + 1);
+		std::cout << "WorldRank = " << WorldRank << "; ";
+		for (int i = 0; i < WorldSize; i++)
+		{
+			std::cout << ReceivedResults[i + WorldSize] << " ";
+		}
+		std::cout << std::endl;
 	}
 	ReceivedResults[WorldRank] = WorldRank;
 	CombineResults(ReceivedResults, ReceivedResults + WorldSize, WorldSize);
