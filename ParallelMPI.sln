@@ -5,6 +5,8 @@ VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ParallelMPI", "ParallelMPI\ParallelMPI.vcxproj", "{33E8C9A9-4B09-4CE3-A507-057C742A3E44}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MatrixMul", "MatrixMul\MatrixMul.vcxproj", "{A2EAC0EF-6916-4E3C-866A-487F20D1C095}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{33E8C9A9-4B09-4CE3-A507-057C742A3E44}.Release|x64.Build.0 = Release|x64
 		{33E8C9A9-4B09-4CE3-A507-057C742A3E44}.Release|x86.ActiveCfg = Release|Win32
 		{33E8C9A9-4B09-4CE3-A507-057C742A3E44}.Release|x86.Build.0 = Release|Win32
+		{A2EAC0EF-6916-4E3C-866A-487F20D1C095}.Debug|x64.ActiveCfg = Debug|x64
+		{A2EAC0EF-6916-4E3C-866A-487F20D1C095}.Debug|x64.Build.0 = Debug|x64
+		{A2EAC0EF-6916-4E3C-866A-487F20D1C095}.Debug|x86.ActiveCfg = Debug|Win32
+		{A2EAC0EF-6916-4E3C-866A-487F20D1C095}.Debug|x86.Build.0 = Debug|Win32
+		{A2EAC0EF-6916-4E3C-866A-487F20D1C095}.Release|x64.ActiveCfg = Release|x64
+		{A2EAC0EF-6916-4E3C-866A-487F20D1C095}.Release|x64.Build.0 = Release|x64
+		{A2EAC0EF-6916-4E3C-866A-487F20D1C095}.Release|x86.ActiveCfg = Release|Win32
+		{A2EAC0EF-6916-4E3C-866A-487F20D1C095}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
